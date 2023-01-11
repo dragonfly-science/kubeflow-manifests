@@ -35,6 +35,8 @@ Install_Sequence = [
     "kserve",
     "models-web-app",
     "central-dashboard",
+    "csi-secrets-store" ,
+    "secrets-store-csi-driver/secrets-store-csi-driver",
     "aws-secrets-manager",
     "kubeflow-pipelines",
     "admission-webhook",
