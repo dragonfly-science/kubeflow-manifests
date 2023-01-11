@@ -35,8 +35,7 @@ Install_Sequence = [
     "kserve",
     "models-web-app",
     "central-dashboard",
-    "csi-secrets-store" ,
-    "secrets-store-csi-driver/secrets-store-csi-driver",
+    "csi-secrets-store",
     "aws-secrets-manager",
     "kubeflow-pipelines",
     "admission-webhook",
@@ -165,6 +164,8 @@ def install_remote_component(component_name, cluster_name):
         install_alb_controller(cluster_name)
     elif component_name == "ack-sagemaker-controller":
         install_ack_controller()
+    elif component_name == "csi-secrets-store":
+        install_csi_secrets_store()
 
 
 def install_certmanager():
@@ -231,6 +232,9 @@ def install_ack_controller():
         f"{CHART_EXPORT_PATH}/{SERVICE}-chart"
     )
 
+def install_csi_secrets_store():
+    exec_shell("helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts")
+    exec_shell("helm install -n kube-system csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver --namespace kubeflow")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
