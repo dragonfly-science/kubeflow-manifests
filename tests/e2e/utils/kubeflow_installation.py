@@ -234,7 +234,9 @@ def install_ack_controller():
 
 def install_csi_secrets_store():
     exec_shell("helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts")
-    exec_shell("helm install -n kube-system csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver --namespace kubeflow")
+    exec_shell("helm upgrade --install -n kube-system --namespace kubeflow")
+    exec_shell("helm upgrade --install -n csi-secrets-store --namespace kubeflow")
+    exec_shell("helm upgrade --install -n secrets-store-csi-driver/secrets-store-csi-driver --namespace kubeflow")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
