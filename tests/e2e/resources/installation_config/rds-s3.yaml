@@ -388,3 +388,13 @@ aws-telemetry:
         - ../../awsconfigs/common/aws-telemetry
     helm: 
       paths: ../../charts/common/aws-telemetry
+
+# csi-secrets-store
+csi-secrets-store:
+  installation_options:
+    kustomize:
+      paths: 
+        - ../../awsconfigs/common/csi-secrets-store
+    helm:
+      paths: ../../charts/common/csi-secrets-store
+      repo: remote
