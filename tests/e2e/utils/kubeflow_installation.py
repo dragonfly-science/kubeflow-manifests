@@ -166,6 +166,8 @@ def install_remote_component(component_name, cluster_name):
         install_ack_controller()
     elif component_name == "csi-secrets-store":
         install_csi_secrets_store()
+    elif component_name == "aws-secrets-manager":
+        install_aws_secrets_manager()
 
 
 def install_certmanager():
@@ -235,6 +237,11 @@ def install_ack_controller():
 def install_csi_secrets_store():
     exec_shell("helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts")
     exec_shell("helm upgrade --install csi-secrets-store  secrets-store-csi-driver/secrets-store-csi-driver --namespace kube-system")
+
+def install_aws_secrets_manager():
+    exec_shell("helm repo add aws-secrets-manager https://aws.github.io/secrets-store-csi-driver-provider-aws")
+    exec_shell("helm upgrade --install secrets-provider-aws aws-secrets-manager/secrets-store-csi-driver-provider-aws --namespace kube-system")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
