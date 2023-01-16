@@ -22,8 +22,6 @@ INSTALLATION_CONFIG_COGNITO_RDS_S3 = "./resources/installation_config/cognito-rd
 
 Install_Sequence = [
     "cert-manager",
-    "csi-secrets-store",
-    "aws-secrets-manager",
     "istio-1-14",
     "dex",
     "oidc-authservice",
@@ -37,6 +35,8 @@ Install_Sequence = [
     "kserve",
     "models-web-app",
     "central-dashboard",
+    "csi-secrets-store",
+    "aws-secrets-manager",
     "kubeflow-pipelines",
     "admission-webhook",
     "jupyter-web-app",
@@ -234,9 +234,7 @@ def install_ack_controller():
 
 def install_csi_secrets_store():
     exec_shell("helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts")
-    exec_shell("helm upgrade --install -n kube-system --namespace kubeflow")
-    exec_shell("helm upgrade --install -n csi-secrets-store --namespace kubeflow")
-    exec_shell("helm upgrade --install -n secrets-store-csi-driver/secrets-store-csi-driver --namespace kubeflow")
+    exec_shell("helm upgrade --install csi-secrets-store  secrets-store-csi-driver/secrets-store-csi-driver --namespace kube-system")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
