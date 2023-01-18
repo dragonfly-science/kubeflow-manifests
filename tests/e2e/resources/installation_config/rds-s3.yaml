@@ -363,13 +363,13 @@ aws-secrets-manager:
       paths:
         - ../../awsconfigs/common/aws-secrets-manager
     helm:
-      paths: ../../charts/common/aws-secrets-manager/rds-s3
+      repo: remote
   validations:
     pods:
       namespace: kubeflow
       labels:
         - key: app
-          value: aws-secrets-sync
+          value: secrets-store-csi-driver-provider-aws
 
 
 ack-sagemaker-controller:
@@ -387,14 +387,19 @@ aws-telemetry:
       paths: 
         - ../../awsconfigs/common/aws-telemetry
     helm: 
-      paths: ../../charts/common/aws-telemetry
+      repo: ../../charts/common/aws-telemetry
 
-# csi-secrets-store
+#csi-secrets-store
 csi-secrets-store:
   installation_options:
-    kustomize:
-      paths: 
+    kustomize: 
+      paths:
         - ../../awsconfigs/common/csi-secrets-store
     helm:
-      paths: ../../charts/common/csi-secrets-store
       repo: remote
+  validations:
+    pods:
+      namespace: kube-system
+      labels:
+        - key: app
+          value: secrets-store-csi-driver
