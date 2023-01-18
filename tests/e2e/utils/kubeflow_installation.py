@@ -153,7 +153,7 @@ def validate_component_installation(installation_config, component_name):
         key = label["key"]
         value = label["value"]
         print(f"Waiting for {component_name} pods to be ready ...")
-        kubectl_wait_pods(value, namespace, key)
+        kubectl_wait_pods(value, namespace, key, timeout=800)
 
 
 def install_remote_component(component_name, cluster_name):
@@ -240,7 +240,7 @@ def install_csi_secrets_store():
 
 def install_aws_secrets_manager():
     exec_shell("helm repo add aws-secrets-manager https://aws.github.io/secrets-store-csi-driver-provider-aws")
-    exec_shell("helm upgrade --install secrets-provider-aws aws-secrets-manager/secrets-store-csi-driver-provider-aws --namespace kube-system")
+    exec_shell("helm upgrade --install secrets-provider-aws aws-secrets-manager/secrets-store-csi-driver-provider-aws --namespace kubeflow")
 
 
 if __name__ == "__main__":
