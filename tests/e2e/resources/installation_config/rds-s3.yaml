@@ -364,6 +364,7 @@ aws-secrets-manager:
         - ../../awsconfigs/common/aws-secrets-manager
     helm:
       repo: remote
+      paths: ../../charts/common/aws-secrets-manager/rds-s3
   validations:
     pods:
       namespace: kubeflow
