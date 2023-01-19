@@ -153,7 +153,7 @@ def validate_component_installation(installation_config, component_name):
         key = label["key"]
         value = label["value"]
         print(f"Waiting for {component_name} pods to be ready ...")
-        kubectl_wait_pods(value, namespace, key, timeout=800)
+        kubectl_wait_pods(value, namespace, key)
 
 
 def install_remote_component(component_name, cluster_name):
