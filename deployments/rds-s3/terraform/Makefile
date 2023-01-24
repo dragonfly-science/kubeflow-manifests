@@ -1,5 +1,10 @@
 SHELL := /bin/bash # Use bash syntax
 
+TFVARS_PATH ?= sample.auto.tfvars
+CLUSTER ?= $(shell cat $(TFVARS_PATH) | grep cluster_name | cut -d "=" -f2 | tr -d '"')
+AWS_REGION ?= $(shell cat $(TFVARS_PATH) | grep cluster_region | cut -d "=" -f2 | tr -d '"')
+CONFIG_CMD ?= aws eks update-kubeconfig --name $(CLUSTER) --region $(AWS_REGION)
+
 deploy: init \
  create-vpc \
  create-eks-cluster \
@@ -22,6 +27,7 @@ create-vpc:
 create-eks-cluster:
 	terraform apply -target="module.eks_blueprints" -auto-approve
 	terraform output -raw configure_kubectl | bash
+	$(CONFIG_CMD)
 
 deploy-eks-blueprints-k8s-addons:
 	terraform apply -target="module.eks_blueprints_kubernetes_addons" -auto-approve
