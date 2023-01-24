@@ -1,4 +1,4 @@
-cluster_name="kubeflow-synth-chm-v3"
+cluster_name="kubeflow-synth-chm-v4"
 cluster_region="us-east-1"
 generate_db_password="true"
 use_rds="true"
@@ -8,3 +8,6 @@ use_s3="true"
 deletion_protection="false"
 secret_recovery_window_in_days="0"
 force_destroy_s3_bucket="true"
+
+# Add GPU nodegroup
+node_instance_type_gpu="p3.2xlarge"
