@@ -21,6 +21,7 @@ locals {
     GithubRepo = "github.com/awslabs/kubeflow-manifests"
     Platform = "kubeflow-on-aws"
     KubeflowVersion = "1.6"
+    Project = "synth-chm"
   }
 
   kf_helm_repo_path = var.kf_helm_repo_path
