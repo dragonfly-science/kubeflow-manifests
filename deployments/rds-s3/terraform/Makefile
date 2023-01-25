@@ -30,6 +30,7 @@ create-eks-cluster:
 	$(CONFIG_CMD)
 
 deploy-eks-blueprints-k8s-addons:
+	kubectl create ns nvidia-device-plugin --dry-run=client -o yaml | kubectl apply -f -
 	terraform apply -target="module.eks_blueprints_kubernetes_addons" -auto-approve
 
 deploy-kubeflow-components:
