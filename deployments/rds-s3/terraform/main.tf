@@ -30,7 +30,7 @@ locals {
   managed_node_group_cpu = {
     node_group_name = "managed-ondemand-cpu"
     instance_types  = [var.node_instance_type]
-    min_size        = 5
+    min_size        = 1
     desired_size    = 5
     max_size        = 10
     subnet_ids      = module.vpc.private_subnets
@@ -40,7 +40,7 @@ locals {
     node_group_name = "managed-ondemand-gpu"
     instance_types  = [var.node_instance_type_gpu]
     min_size        = 0
-    desired_size    = 0
+    desired_size    = 1
     max_size        = 2
     ami_type        = "AL2_x86_64_GPU"
     subnet_ids      = module.vpc.private_subnets
