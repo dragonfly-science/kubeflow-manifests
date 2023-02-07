@@ -150,7 +150,7 @@ module "eks_blueprints_kubernetes_addons" {
     repository                 = "https://nvidia.github.io/k8s-device-plugin"
     version                    = "0.12.3"
     namespace                  = "nvidia-device-plugin"
-    values = [templatefile("${path.module}/values.yaml")]
+    values = [file("${path.module}/../../../iaac/terraform/common/nvidia-device-plugin/values.yaml")]
   }
 
   secrets_store_csi_driver_helm_config = {
