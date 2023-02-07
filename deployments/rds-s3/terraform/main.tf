@@ -142,7 +142,16 @@ module "eks_blueprints_kubernetes_addons" {
   enable_aws_efs_csi_driver = true
   enable_aws_fsx_csi_driver = true
 
+  # add updated config for nvidia-device-plugin
   enable_nvidia_device_plugin = local.using_gpu
+  nvidia_device_plugin_helm_config = {
+    name                       = "nvidia-device-plugin"
+    chart                      = "nvidia-device-plugin"
+    repository                 = "https://nvidia.github.io/k8s-device-plugin"
+    version                    = "0.12.3"
+    namespace                  = "nvidia-device-plugin"
+    values = [templatefile("${path.module}/values.yaml")]
+  }
 
   secrets_store_csi_driver_helm_config = {
     namespace   = "kube-system"
