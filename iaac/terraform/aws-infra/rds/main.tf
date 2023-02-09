@@ -58,7 +58,7 @@ resource "aws_db_instance" "kubeflow_db" {
 }
 
 resource "aws_secretsmanager_secret" "rds_secret" {
-  name_prefix = "rds-secret-"
+  name = "rds-secret"
   recovery_window_in_days = var.secret_recovery_window_in_days
 }
 

@@ -17,7 +17,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "artifact_store_en
 }
 
 resource "aws_secretsmanager_secret" "s3_secret" {
-  name_prefix = "s3-secret-"
+  name = "s3-secret"
   recovery_window_in_days = var.secret_recovery_window_in_days
 }
 
