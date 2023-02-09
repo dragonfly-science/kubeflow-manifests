@@ -58,9 +58,7 @@ securityContext: {}
 
 resources: {}
 nodeSelector: 
-    - key: "node.kubernetes.io/instance-type"
-      operator: "Equal"
-      value: "p3.2xlarge"
+  node.kubernetes.io/instance-type: "p3.2xlarge"
 affinity: {}
 tolerations: {}
 
